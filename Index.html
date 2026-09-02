@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rafael AI</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 18px;
+      text-align: center;
+      background: #1c1c1c;
+      border-bottom: 1px solid #333;
+    }
+
+    header h1 {
+      font-size: 24px;
+    }
+
+    header p {
+      color: #aaa;
+      margin-top: 5px;
+    }
+
+    #chat {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .message {
+      max-width: 80%;
+      padding: 12px 15px;
+      border-radius: 15px;
+      line-height: 1.4;
+    }
+
+    .rafael {
+      background: #292929;
+      align-self: flex-start;
+    }
+
+    .user {
+      background: #444;
+      align-self: flex-end;
+    }
+
+    #area {
+      display: flex;
+      padding: 12px;
+      background: #1c1c1c;
+      gap: 10px;
+    }
+
+    #input {
+      flex: 1;
+      padding: 13px;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      font-size: 16px;
+    }
+
+    button {
+      border: none;
+      border-radius: 10px;
+      padding: 0 20px;
+      background: white;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Rafael</h1>
+    <p>Seu assistente de IA</p>
+  </header>
+
+  <div id="chat">
+    <div class="message rafael">
+      Olá! Eu sou o Rafael. 👋
+    </div>
+  </div>
+
+  <div id="area">
+    <input id="input" type="text" placeholder="Digite uma mensagem...">
+    <button onclick="enviar()">Enviar</button>
+  </div>
+
+  <script>
+    function enviar() {
+      const input = document.getElementById("input");
+      const chat = document.getElementById("chat");
+
+      const mensagem = input.value.trim();
+
+      if (mensagem === "") return;
+
+      const usuario = document.createElement("div");
+      usuario.className = "message user";
+      usuario.textContent = mensagem;
+
+      chat.appendChild(usuario);
+
+      input.value = "";
+
+      const resposta = document.createElement("div");
+      resposta.className = "message rafael";
+      resposta.textContent =
+        "Recebi sua mensagem! Ainda estou sendo construído. Em breve vou ganhar meu cérebro de IA e memória.";
+
+      chat.appendChild(resposta);
+
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    document.getElementById("input").addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        enviar();
+      }
+    });
+  </script>
+
+</body>
+</html>
